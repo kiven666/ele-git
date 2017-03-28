@@ -1,5 +1,5 @@
-<template>  
-   <div class="login_box">
+<template>
+  <div class="login_box">
     <Backbar title="登录"></Backbar>
     <div class="input_login">
       <input type="search" placeholder="用户名" v-model="uname" maxlength="18" autocapitalize="off">
@@ -9,52 +9,49 @@
   </div>
 </template>
 
-<script type="text/javascript">
-  import Backbar from './tpl/Backbar';
-  // import fixNav from './tpl/fixNav';
-  import { mapGetters } from 'vuex';
+<script>
+import Backbar from './small_components/Back_bar';
+import { mapGetters } from 'vuex';
 
-  export default{
-    name:'login',
-    data(){
-      return {
-        uname:'',
-        pwd:''
+export default {
+  name: 'login',
+  data () {
+    return {
+      uname: '',
+      pwd: ''
+    };
+  },
+  mounted () {
+    if (this.getLogin) {
+      this.$router.replace('/myzone');
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getLogin',
+      'getuname',
+      'getpwd'
+    ])
+  },
+  methods: {
+    cheack_n_p () {
+      if (this.uname === '' || this.pwd === '') {
+        alert('用户名或密码不能为空');
+        return;
       }
-    },
-    mounted () {
-      if (this.getLogin) {
+      if (this.uname !== this.getuname || this.pwd !== this.getpwd) {
+        alert('用户名或密码错误');
+      } else {
+        this.$store.dispatch('setLogin', true);
         this.$router.replace('/myzone');
       }
-    },
-    computed:{
-      ...mapGetters([
-        'getLogin',
-        'getuname',
-        'getpwd'
-      ])
-    },
-    methods:{
-      cheack_n_p () {
-        if (this.uname === '' || this.pwd === '') {
-          alert('用户名或密码不能为空');
-          return;
-        }
-        if (this.uname !== this.getuname || this.pwd !== this.getpwd) {
-          alert('用户名或密码错误');
-        } else {
-          this.$store.dispatch('setLogin', true);
-          this.$router.replace('/myzone');
-        }
-      }
-    },
-    components:{
-      Backbar
     }
+  },
+  components: {
+    'Backbar': Backbar
   }
-
+};
 </script>
-
 
 <style lang="less" scoped>
   .input_login{

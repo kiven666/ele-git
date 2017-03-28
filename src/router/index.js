@@ -1,40 +1,45 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Homepage from '../components/Homepage'
-import Search from '../components/search'
-import Order from '../components/order'
-import Login from '../components/login'
-import Myzone from '../components/myzone'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+import Homepage from 'components/Homepage';
+import Order from 'components/Order';
+import Myzone from 'components/Myzone';
+import Business from 'components/Business';
+import Login from 'components/Login';
+import Search from 'components/Search';
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Homepage',
+      name: 'homepage',
       component: Homepage
     },
     {
-    	path:'/search/:keyword',
-    	name:'search',
-    	component:Search
+      path: '/order',
+      name: 'order',
+      component: Order
     },
     {
-      path:'/order',
-      name:'order',
-      component:Order
+      path: '/myzone',
+      name: 'myzone',
+      component: Myzone
     },
     {
-      path:'/login',
-      name:'login',
-      component:Login
+      path: '/business/:id',
+      name: 'business',
+      component: Business
     },
     {
-      path:'/myzone',
-      name:'myzone',
-      component:Myzone
+      path: '/search/:keyword',
+      name: 'Search',
+      component: Search
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
-
   ]
-})
+});

@@ -1,4 +1,4 @@
-<template>	
+<template>
   <div class="myzone_index">
     <Backbar title="我的"></Backbar>
     <div class="myzone_content">
@@ -66,120 +66,121 @@
       </svg>
       <span class="v-md">下载饿了么APP</span>
     </div>
-    <fixNav></fixNav>
-  </div>	
+    <Fixednav></Fixednav>
+  </div>
 </template>
 
-<script type="text/javascript">
-	
-	import Backbar from './tpl/Backbar';
-	import fixNav from './tpl/fixNav';
+<script>
+import Backbar from './small_components/Back_bar';
+import Fixednav from './small_components/Fixed_nav';
+export default {
+  name: 'myzone',
+  data () {
+    return {
+      uname: ''
+    };
+  },
+  mounted () {
+    if (!this.isLogin) {
+      this.$router.replace('/login');
+    } else {
+      this.uname = this.$store.getters.getuname;
+      // 设置当前标记为我的
+      this.$store.dispatch('setWhichpage', 'myzone');
+    }
+  },
+  computed: {
+    isLogin () {
+      return this.$store.getters.getLogin;
+    }
+  },
+  methods: {
 
-	export default{
-		name:'myzone',
-		data (){
-			return {
-				uname:''
-			}
-		},
-		mounted(){
-			if(!this.isLogin){
-				this.$router.replace('/login')
-			}else{
-				this.uname = this.$store.getters.getuname;
-				this.$store.dispatch('setWhichpage','myzone')
-			}
-		},
-		methods:{
-			isLogin(){
-				return this.$store.getters.getLogin
-			}
-		},
-		components:{
-			Backbar,
-			fixNav
-		}
-	}
-
+  },
+  components: {
+    Fixednav,
+    Backbar
+  }
+};
 </script>
 
 <style lang="less" scoped>
-	.myzone_content{
-	  width:10rem;
-	  height:3rem;
-	  margin-top:1rem;
-	  padding: .8rem .4rem;
-	  box-sizing:border-box;
-	  background:#0097ff;
-	  img{
-	    width:1.4rem;
-	    height:1.4rem;
-	    border-radius:50%;float: left;
-	  }
-	  .myzone_uid{
-	    float: left;
-	    margin-left:.5rem;
-	    color:#fff;
-	    h3{
-	      font-size:.7rem;
-	    }
-	    p{
-	      font-size:.4rem;
-	    }
-	  }
-	}
-	.three_lan{
-	  display: table;
-	  width: 100%;
-	  height: 2.24rem;
-	  border-bottom: 1px solid #ddd;
-	  background-color: #fff;
-	  .three_lan_{
-	    display: table-cell;
-	    width: 33.3333%;
-	    vertical-align: middle;
-	    text-align: center;
-	    p.big_colorful{
-	      line-height:.4rem;
-	    }
-	    .index-2FmrF_0 {
-	        padding: .4rem 0 0;
-	        font-size: .6rem;
-	        line-height: .6rem;
-	        font-weight: 700;
-	    }
-	    .index-2V-Hh_0 {
-	        font-size: .32rem;
-	        line-height: .32rem;
-	    }
-	    .index-3S6cZ_0 {
-	        font-size: .32rem;
-	        line-height: .37rem;
-	        font-weight: 500;
-	        color: #666;
-	    }
+  .myzone_content{
+    width:10rem;
+    height:3rem;
+    margin-top:1rem;
+    padding: .8rem .4rem;
+    box-sizing:border-box;
+    background:#0097ff;
+    img{
+      width:1.4rem;
+      height:1.4rem;
+      border-radius:50%;float: left;
+    }
+    .myzone_uid{
+      float: left;
+      margin-left:.5rem;
+      color:#fff;
+      h3{
+        font-size:.7rem;
+      }
+      p{
+        font-size:.4rem;
+      }
+    }
+  }
+  .three_lan{
+    display: table;
+    width: 100%;
+    height: 2.24rem;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    .three_lan_{
+      display: table-cell;
+      width: 33.3333%;
+      vertical-align: middle;
+      text-align: center;
+      p.big_colorful{
+        line-height:.4rem;
+      }
+      .index-2FmrF_0 {
+          padding: .4rem 0 0;
+          font-size: .6rem;
+          line-height: .6rem;
+          font-weight: 700;
+      }
+      .index-2V-Hh_0 {
+          font-size: .32rem;
+          line-height: .32rem;
+      }
+      .index-3S6cZ_0 {
+          font-size: .32rem;
+          line-height: .37rem;
+          font-weight: 500;
+          color: #666;
+      }
 
-	  }
-	}
-	div.some_bar{
-	  width: 10rem;
-	  height: 1.1rem;
-	  padding: 0 .4rem;
-	  box-sizing: border-box;
-	  background:#fff;
-	  font-size:.4rem;
-	  line-height:1.1rem;
-	  border-top:1px solid #dedede;
-	  &.first-c{
-	    margin-top: .3rem;
-	    boeder:none;
-	  }
-	  svg{
-	    width: .4rem;
-	    height: .4rem;
-	  }
-	  span{
-	    margin-left:.2rem;
-	  }
-	}
+    }
+  }
+  div.some_bar{
+    width: 10rem;
+    height: 1.1rem;
+    padding: 0 .4rem;
+    box-sizing: border-box;
+    background:#fff;
+    font-size:.4rem;
+    line-height:1.1rem;
+    border-top:1px solid #dedede;
+    &.first-c{
+      margin-top: .3rem;
+      boeder:none;
+    }
+    svg{
+      width: .4rem;
+      height: .4rem;
+    }
+    span{
+      margin-left:.2rem;
+    }
+  }
 </style>

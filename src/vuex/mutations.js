@@ -1,4 +1,3 @@
-//提交状态的方法
 export default {
   // 设置是否登录
   SET_LOGIN (state, platform) {
